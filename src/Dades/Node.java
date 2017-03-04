@@ -1,24 +1,24 @@
 package Dades;
 
-public class Node {
-	int valor;
-	Node seg;
+public class Node <E> {
+	E valor;
+	Node<E> seg;
 	//Constructor
-	public Node(int valor, Node seg) {
+	public Node(E valor, Node<E> seg) {
 		this.valor = valor;
 		this.seg = seg;
 	}
 	
-	public int getValor() {
+	public E getValor() {
 		return valor;
 	}
-	public void setValor(int valor) {
+	public void setValor(E valor) {
 		this.valor = valor;
 	}
-	public Node getSeg() {
+	public Node<E> getSeg() {
 		return seg;
 	}
-	public void setSeg(Node seg) {
+	public void setSeg(Node<E> seg) {
 		this.seg = seg;
 	}
 	

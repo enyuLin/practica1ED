@@ -2,9 +2,9 @@ package Dades;
 
 import Exceptions.*;
 
-public class CuaEntDinamica implements TADCuaEnters {
-	private Node primer;
-	private Node ultim;
+public class CuaEntDinamica<E> implements TADCuaGenerica<E> {
+	private Node<E> primer;
+	private Node<E> ultim;
 
 	// Constructor
 	public CuaEntDinamica() {
@@ -12,21 +12,21 @@ public class CuaEntDinamica implements TADCuaEnters {
 		ultim = null;
 	}
 
-	public void encuar(int e) throws CuaPlena {
+	public void encuar(E e) throws CuaPlena {
 		if (primer == null) {
-			ultim = new Node(e, null);
+			ultim = new Node<E>(e, null);
 			primer = ultim;
 		} else {
-			Node nou = new Node(e, null);
+			Node<E> nou = new Node<E>(e, null);
 			primer.setSeg(nou);
 			primer = nou;
 		}
 	}
 
-	public int desencuar() throws CuaBuida {
+	public E desencuar() throws CuaBuida {
 		if (ultim == null)
 			throw new CuaBuida();
-		int valorPrimer = primer.getValor();
+		E valorPrimer = primer.getValor();
 		if (primer == ultim) {
 			primer = null;
 			ultim = null;
@@ -36,7 +36,7 @@ public class CuaEntDinamica implements TADCuaEnters {
 		return valorPrimer;
 	}
 
-	public int primer() throws CuaBuida {
+	public E primer() throws CuaBuida {
 		if (primer == null)
 			throw new CuaBuida();
 		return primer.getValor();
