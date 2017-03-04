@@ -18,8 +18,8 @@ public class CuaEntDinamica<E> implements TADCuaGenerica<E> {
 			primer = ultim;
 		} else {
 			Node<E> nou = new Node<E>(e, null);
-			primer.setSeg(nou);
-			primer = nou;
+			ultim.setSeg(nou);
+			ultim = nou;
 		}
 	}
 

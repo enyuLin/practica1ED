@@ -14,8 +14,10 @@ public class CuaEntVector implements TADCuaEnters {
 	public void encuar(int e) throws CuaPlena {
 		if (nElem == cua.length)
 			throw new CuaPlena(e);
-		for (int i = (nElem + 1); i >= 1; i--)
-			cua[i] = cua[i - 1];
+		if (nElem != 0) {
+			for (int i = nElem; i >= 1; i--)
+				cua[i] = cua[i - 1];
+		}
 		cua[0] = e;
 		nElem++;
 	}
