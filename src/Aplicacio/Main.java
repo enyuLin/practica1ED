@@ -58,69 +58,41 @@ public class Main {
 			}
 
 			String nomFitxer = fitxerE.substring(0, fitxerE.indexOf('.'));
-			BufferedWriter fitxerS;
-			if (opcioXifratge == 1) {
-				// Estem xifrant
-				try {
+			BufferedWriter fitxerS = null;
+			try {
+				if (opcioXifratge==1) 
 					fitxerS = new BufferedWriter(new FileWriter(nomFitxer + "_vX.txt"));
-					String fraseE = f.readLine();
-					while (fraseE != null) {
-						String fraseS = "";
-						int desplaza = 0;
-						int valorE = 0;
-						for (int i = 0; i < fraseE.length(); i++) {
-							if (opcio == 1 || opcio == 2)
-								desplaza = cuaE.desencuar();
-							else if (opcio == 3)
-								desplaza = cuaG.desencuar();
-							valorE = (int) fraseE.charAt(i);
-							valorE += desplaza % 255;
-							fraseS += "" + (char) valorE;
-							if (opcio == 1 || opcio == 2)
-								cuaE.encuar(desplaza);
-							else if (opcio == 3)
-								cuaG.encuar(desplaza);
-						}
-						// System.out.println("fraseS: "+ fraseS);
-						fitxerS.write(fraseS);
-						fitxerS.newLine();
-						fraseE = f.readLine();
-					}
-					fitxerS.close();
-				} catch (IOException e) {
-					System.out.println("S'ha produit un error en el fitxer de sortida!");
-				}
-			} else if (opcioXifratge == 2) {
-				// Estem desxifrant
-				try {
+				else if (opcioXifratge==2)
 					fitxerS = new BufferedWriter(new FileWriter(nomFitxer + "_vD.txt"));
-					String fraseE = f.readLine();
-					while (fraseE != null) {
-						String fraseS = "";
-						int desplaza = 0;
-						int valorE = 0;
-						for (int i = 0; i < fraseE.length(); i++) {
-							if (opcio == 1 || opcio == 2)
-								desplaza = cuaE.desencuar();
-							else if (opcio == 3)
-								desplaza = cuaG.desencuar();
-							valorE = (int) fraseE.charAt(i);
+				String fraseE = f.readLine();
+				while (fraseE != null) {
+					String fraseS = "";
+					int desplaza = 0;
+					int valorE = 0;
+					for (int i = 0; i < fraseE.length(); i++) {
+						if (opcio == 1 || opcio == 2)
+							desplaza = cuaE.desencuar();
+						else if (opcio == 3)
+							desplaza = cuaG.desencuar();
+						valorE = (int) fraseE.charAt(i);
+						if (opcioXifratge==1) 
+							valorE += desplaza % 255;
+						else if (opcioXifratge==2)
 							valorE -= desplaza % 255;
-							fraseS += "" + (char) valorE;
-							if (opcio == 1 || opcio == 2)
-								cuaE.encuar(desplaza);
-							else if (opcio == 3)
-								cuaG.encuar(desplaza);
-						}
-						fitxerS.write(fraseS);
-						fitxerS.newLine();
-						fraseE = f.readLine();
+						fraseS += "" + (char) valorE;
+						if (opcio == 1 || opcio == 2)
+							cuaE.encuar(desplaza);
+						else if (opcio == 3)
+							cuaG.encuar(desplaza);
 					}
-					fitxerS.close();
-
-				} catch (IOException e) {
-					System.out.println("S'ha produit un error en el fitxer de sortida!");
+					// System.out.println("fraseS: "+ fraseS);
+					fitxerS.write(fraseS);
+					fitxerS.newLine();
+					fraseE = f.readLine();
 				}
+				fitxerS.close();
+			} catch (IOException e) {
+				System.out.println("S'ha produit un error en el fitxer de sortida!");
 			}
 			f.close();
 		} catch (FileNotFoundException e) {
