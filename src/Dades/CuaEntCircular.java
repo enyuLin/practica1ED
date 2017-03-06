@@ -1,4 +1,5 @@
 package Dades;
+
 import Exceptions.*;
 
 public class CuaEntCircular implements TADCuaEnters {
@@ -15,28 +16,24 @@ public class CuaEntCircular implements TADCuaEnters {
 		primer = 0;
 		nElem = 0;
 	}
-	
+
 	public void encuar(int e) throws CuaPlena {
-		if (nElem == 0) {
-			cua[ultim] = e;
-			ultim = (ultim+1) % cua.length;
-			nElem++;
-		} else {
-			if (nElem >= cua.length) throw new CuaPlena(e);
-			cua[ultim] = e;
-			ultim = (ultim+1) % cua.length;
-			nElem++;
-		}
+		if (nElem >= cua.length)
+			throw new CuaPlena(e);
+		cua[ultim] = e;
+		ultim = (ultim + 1) % cua.length;
+		nElem++;
 	}
-	
+
 	public int desencuar() throws CuaBuida {
-		if (nElem == 0) throw new CuaBuida();
+		if (nElem == 0)
+			throw new CuaBuida();
 		int e = cua[primer];
 		nElem--;
-		primer = (primer+1) %cua.length;
+		primer = (primer + 1) % cua.length;
 		return e;
 	}
-	
+
 	public int primer() throws CuaBuida {
 		if (nElem == 0)
 			throw new CuaBuida();
@@ -54,6 +51,5 @@ public class CuaEntCircular implements TADCuaEnters {
 	public int numElements() {
 		return nElem;
 	}
-	
 
 }
