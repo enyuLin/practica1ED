@@ -3,8 +3,9 @@ package Aplicacio;
 import java.io.*;
 import java.util.Scanner;
 import Dades.*;
-import Exceptions.CuaBuida;
-import Exceptions.CuaPlena;
+import Exceptions.*;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Main {
 
@@ -12,7 +13,9 @@ public class Main {
 		Scanner teclat = new Scanner(System.in);
 		TADCuaGenerica<Integer> cuaG = null;
 		TADCuaEnters cuaE = null;
+		Queue<Integer> cuaCollection = new LinkedList<Integer>();
 		int opcio = 0;
+		
 		// Pregunntar a l'usuari les 4 diferents implementacions
 		try {
 			System.out.println(
@@ -53,8 +56,10 @@ public class Main {
 				cuaG = new CuaEntDinamica<Integer>();
 				for (int i = 0; i < clau.length(); i++)
 					cuaG.encuar(clau.charAt(i) - '0');
-			} else {
+			} else if (opcio== 4){
 				// Opcio de java.util.collection
+				for (int i = 0; i < clau.length(); i++)
+					cuaCollection.add(clau.charAt(i) - '0');
 			}
 
 			String nomFitxer = fitxerE.substring(0, fitxerE.indexOf('.'));
@@ -74,6 +79,8 @@ public class Main {
 							desplaza = cuaE.desencuar();
 						else if (opcio == 3)
 							desplaza = cuaG.desencuar();
+						else if (opcio == 4)
+							desplaza = cuaCollection.remove();
 						valorE = (int) fraseE.charAt(i);
 						if (opcioXifratge==1) 
 							valorE += desplaza % 255;
@@ -84,6 +91,8 @@ public class Main {
 							cuaE.encuar(desplaza);
 						else if (opcio == 3)
 							cuaG.encuar(desplaza);
+						else if (opcio== 4)
+							cuaCollection.add(desplaza);
 					}
 					// System.out.println("fraseS: "+ fraseS);
 					fitxerS.write(fraseS);
