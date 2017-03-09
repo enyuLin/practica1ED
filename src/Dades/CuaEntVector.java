@@ -2,6 +2,11 @@ package Dades;
 
 import Exceptions.*;
 
+/**
+ * Classe que representa el tipus per una cua sobre un vector i un índex de posició.
+ * 
+ *
+ */
 public class CuaEntVector implements TADCuaEnters {
 	private int cua[];
 	private int nElem;
@@ -13,7 +18,7 @@ public class CuaEntVector implements TADCuaEnters {
 
 	public void encuar(int e) throws CuaPlena {
 		if (nElem == cua.length)
-			throw new CuaPlena(e);
+			throw new CuaPlena();
 		nElem++;
 		cua[nElem-1] = e;
 	}

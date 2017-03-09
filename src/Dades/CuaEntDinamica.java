@@ -2,6 +2,11 @@ package Dades;
 
 import Exceptions.*;
 
+/**
+ * Classe que representa el tipus per una cua dinàmica genèrica amb punters i refències.
+ * 
+ *
+ */
 public class CuaEntDinamica<E> implements TADCuaGenerica<E> {
 	private Node<E> primer;
 	private Node<E> ultim;

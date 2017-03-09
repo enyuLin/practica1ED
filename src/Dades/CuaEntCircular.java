@@ -2,6 +2,11 @@ package Dades;
 
 import Exceptions.*;
 
+/**
+ * Classe que representa el tipus per una cua circular sobre un vector.
+ * 
+ *
+ */
 public class CuaEntCircular implements TADCuaEnters {
 	// Atributs
 	private int nElem;
@@ -19,7 +24,7 @@ public class CuaEntCircular implements TADCuaEnters {
 
 	public void encuar(int e) throws CuaPlena {
 		if (nElem >= cua.length)
-			throw new CuaPlena(e);
+			throw new CuaPlena();
 		cua[ultim] = e;
 		ultim = (ultim + 1) % cua.length;
 		nElem++;
